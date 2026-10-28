@@ -1,0 +1,247 @@
+@import "tailwindcss";
+
+/*
+ * AB DEVELOPMENT DESIGN TOKENS
+ * Colors and fonts are defined once here as CSS variables and exposed to
+ * Tailwind (e.g. bg-black, text-ivory, text-gold, font-serif).
+ */
+@theme {
+  --color-black: #000000;
+  --color-ivory: #f8f8f6;
+  --color-linen: #efede8;
+  --color-charcoal: #161615;
+  --color-graphite: #222220;
+  --color-ash: #3a3936;
+  /* Muted text on dark backgrounds (8:1 on black) */
+  --color-stone: #a8a49c;
+  /* Muted text on light backgrounds (6.6:1 on ivory) */
+  --color-taupe: #5e5a54;
+  /* Soft muted gold: use on dark backgrounds */
+  --color-gold: #b89b6a;
+  --color-gold-soft: #d2bd96;
+  /* Deeper gold for text on light backgrounds (5.4:1 on ivory) */
+  --color-gold-deep: #7a5f33;
+  --color-danger: #e08a7a;
+  --color-danger-deep: #a3352a;
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-montserrat), Montserrat, "Helvetica Neue", Arial, sans-serif;
+
+  --tracking-label: 0.28em;
+  --tracking-wide-xl: 0.42em;
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-padding-top: 7rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    background: var(--color-black);
+    color: var(--color-ivory);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.005em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-gold);
+    color: var(--color-black);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-gold);
+    outline-offset: 4px;
+  }
+
+  .on-light :focus-visible,
+  .on-light:focus-visible {
+    outline-color: var(--color-gold-deep);
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+}
+
+@layer components {
+  /* Wide-tracked small caps label, echoing the "DEVELOPMENT" wordmark */
+  .label {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .hairline {
+    height: 1px;
+    border: 0;
+    background: currentColor;
+    opacity: 0.25;
+  }
+
+  .container-luxe {
+    width: 100%;
+    max-width: 88rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-luxe {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-luxe {
+      padding-inline: 3.5rem;
+    }
+  }
+
+  .prose-luxe p + p {
+    margin-top: 1.25em;
+  }
+
+  .prose-luxe a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  /* Form controls: hairline underline fields */
+  .field {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+    padding: 0.75rem 0;
+    font-size: 1rem;
+    color: inherit;
+    border-radius: 0;
+    transition: border-color 0.3s var(--ease-luxe);
+  }
+
+  .field:hover {
+    border-bottom-color: color-mix(in srgb, currentColor 60%, transparent);
+  }
+
+  .field:focus {
+    outline: none;
+    border-bottom-color: var(--color-gold);
+  }
+
+  .field:focus-visible {
+    outline: none;
+    box-shadow: 0 1px 0 0 var(--color-gold);
+  }
+
+  .field[aria-invalid="true"] {
+    border-bottom-color: var(--color-danger);
+  }
+
+  select.field {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23b89b6a' stroke-width='1.2'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.25rem center;
+    padding-right: 2rem;
+  }
+
+  select.field option {
+    background: var(--color-charcoal);
+    color: var(--color-ivory);
+  }
+
+  textarea.field {
+    resize: vertical;
+    min-height: 8rem;
+  }
+}
+
+/* Scroll-reveal animation (see components/ui/RevealObserver.tsx).
+   Elements start hidden only when motion is allowed and JavaScript runs. */
+@media (prefers-reduced-motion: no-preference) and (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-fade {
+    animation: hero-fade 1.6s var(--ease-luxe) both;
+    animation-delay: var(--hero-delay, 0ms);
+  }
+
+  .ken-burns {
+    animation: ken-burns 24s ease-out both;
+  }
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media print {
+  .reveal {
+    opacity: 1 !important;
+  }
+}
+
+/* Native <dialog> backdrop for the gallery lightbox and menus */
+dialog::backdrop {
+  background: rgb(0 0 0 / 0.92);
+}
+
+/* Hide scrollbars on the horizontally scrolling brand bar on mobile */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
