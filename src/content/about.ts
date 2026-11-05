@@ -82,28 +82,28 @@ export const about = {
     eyebrow: "Service Area",
     title: "Where We Build",
     intro:
-      "We build across Long Island, throughout all five boroughs of New York City, and in Westchester County. Each community has its own character and its own approvals, and we bring local knowledge to every one.",
+      "We build across Long Island, throughout all five boroughs of New York City, and in Westchester County. Every town has its own character and its own approvals, and we know how to work with both.",
   },
 
   values: {
     eyebrow: "What Guides Us",
-    title: "Our Values",
+    title: "What you can count on",
     items: [
       {
-        title: "Intention",
-        text: "Every detail is chosen with purpose, because a home should feel safe, grounded, and proud from the moment you walk in.",
+        title: "Direct",
+        text: "You work with the owner from the first conversation to the final walkthrough. No hand-offs, no runaround.",
       },
       {
-        title: "Honesty",
-        text: "Clear communication, transparent budgets, and realistic schedules. You will always know where your project stands.",
+        title: "Honest",
+        text: "Real numbers, realistic schedules, and a straight answer whenever you ask a question.",
       },
       {
-        title: "Craft",
-        text: "Quality materials and careful workmanship, built to hold a lifetime of memories.",
+        title: "Crafted",
+        text: "Materials and workmanship chosen to hold up for decades, not just until the paint dries.",
       },
       {
-        title: "Heart",
-        text: "We build homes, not just houses. Your vision is personal, and we treat it that way.",
+        title: "Personal",
+        text: "A home is personal, so we treat it that way. Every decision is made with your family in mind.",
       },
     ],
   },

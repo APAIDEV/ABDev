@@ -67,7 +67,7 @@ export function MfaChallenge() {
           className="field text-center font-serif text-3xl tracking-[0.5em]"
         />
       </div>
-      <button type="submit" disabled={pending || !factorId} className={buttonClass("gold", "w-full")}>
+      <button type="submit" disabled={pending || !factorId} className={buttonClass("light", "w-full")}>
         {pending ? "Verifying…" : "Verify"}
       </button>
     </form>

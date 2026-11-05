@@ -1,9 +1,9 @@
 import type { ReactNode } from "react";
 
-/** Small wide-tracked label with a hairline rule, used above headings. */
+/** Small wide-tracked label above headings, echoing the "DEVELOPMENT" wordmark. */
 export function Eyebrow({
   children,
-  tone = "gold",
+  tone = "stone",
   className = "",
 }: {
   children: ReactNode;
@@ -16,10 +16,5 @@ export function Eyebrow({
     stone: "text-stone",
     taupe: "text-taupe",
   }[tone];
-  return (
-    <p className={`label flex items-center gap-4 ${color} ${className}`}>
-      <span aria-hidden="true" className="h-px w-10 bg-current opacity-60" />
-      {children}
-    </p>
-  );
+  return <p className={`label ${color} ${className}`}>{children}</p>;
 }

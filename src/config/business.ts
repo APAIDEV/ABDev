@@ -12,8 +12,20 @@ export const business = {
   /** Legal entity name as registered with New York State (e.g. "AB Development LLC"). TODO: confirm. */
   legalName: "AB Development",
   tagline: "Your Dream, Our Build.",
+  /** Optional secondary line. Not currently shown on the homepage. */
   supportingLine: "Women make a home spin. We bring your vision to life, and our experience helps enhance your dream.",
-  description: "A woman-owned custom home builder serving Long Island, New York City, and Westchester.",
+  description: "A family-owned custom home builder and developer serving Long Island, New York City, and Westchester.",
+
+  /**
+   * THE OWNER
+   * Clients work directly with the owner. Her name is used in the personal
+   * notes on the Home and Contact pages and in the confirmation email.
+   */
+  owner: {
+    name: "Birti Kaur",
+    firstName: "Birti",
+    title: "Owner",
+  },
 
   email: "Abdevelopsli@gmail.com",
   phone: {
@@ -46,7 +58,7 @@ export const business = {
   },
 
   /** Trust badges shown in the header, footer, and contact page. Keep claims accurate. */
-  badges: ["Woman-Owned", "Licensed & Insured", "Available 24/7"] as const,
+  badges: ["Family-Owned", "Licensed & Insured", "Available 24/7"] as const,
 
   /**
    * CONTRACTOR LICENSES

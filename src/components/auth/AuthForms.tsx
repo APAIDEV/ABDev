@@ -69,7 +69,7 @@ export function LoginForm() {
           className="field"
         />
       </div>
-      <button type="submit" disabled={pending} className={buttonClass("gold", "w-full")}>
+      <button type="submit" disabled={pending} className={buttonClass("light", "w-full")}>
         {pending ? "Signing in…" : "Sign In"}
       </button>
     </form>
@@ -87,7 +87,7 @@ export function ForgotPasswordForm() {
         </label>
         <input id="forgot-email" name="email" type="email" autoComplete="email" required className="field" />
       </div>
-      <button type="submit" disabled={pending} className={buttonClass("gold", "w-full")}>
+      <button type="submit" disabled={pending} className={buttonClass("light", "w-full")}>
         {pending ? "Sending…" : "Send Reset Link"}
       </button>
       <p className="text-center text-sm">
@@ -142,7 +142,7 @@ export function NewPasswordForm({
           className="field"
         />
       </div>
-      <button type="submit" disabled={pending} className={buttonClass("gold", "w-full")}>
+      <button type="submit" disabled={pending} className={buttonClass("light", "w-full")}>
         {pending ? "Saving…" : submitLabel}
       </button>
     </form>

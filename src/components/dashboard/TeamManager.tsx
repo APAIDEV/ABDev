@@ -61,7 +61,7 @@ export function InviteForm() {
         </select>
       </div>
       <div className="flex flex-wrap items-center gap-5 sm:col-span-2">
-        <button type="submit" disabled={pending} className={buttonClass("gold")}>
+        <button type="submit" disabled={pending} className={buttonClass("light")}>
           {pending ? "Sending…" : "Send Invitation"}
         </button>
         <Result state={state} />

@@ -27,8 +27,7 @@ export function BrandBar() {
         <div className="hidden shrink-0 items-center gap-4 lg:flex">
           <ul className="hidden items-center gap-4 min-[1340px]:flex" aria-label="Credentials">
             {business.badges.map((badge) => (
-              <li key={badge} className="label flex items-center gap-2 text-[0.6rem] text-stone">
-                <span aria-hidden="true" className="h-1 w-1 rotate-45 bg-gold" />
+              <li key={badge} className="label text-[0.6rem] text-stone">
                 {badge}
               </li>
             ))}

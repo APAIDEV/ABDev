@@ -1,4 +1,4 @@
-/** Small visible tag marking temporary content that must be replaced before launch. */
+/** Small, discreet tag marking temporary content that must be replaced before launch. */
 export function PlaceholderTag({
   children = "Placeholder",
   className = "",
@@ -8,7 +8,7 @@ export function PlaceholderTag({
 }) {
   return (
     <span
-      className={`label inline-flex items-center border border-dashed border-gold/60 bg-black/70 px-2.5 py-1 text-[0.6rem] text-gold-soft ${className}`}
+      className={`inline-flex items-center bg-black/70 px-2 py-1 text-[0.6rem] font-medium tracking-[0.2em] text-ivory uppercase backdrop-blur-sm ${className}`}
     >
       {children}
     </span>

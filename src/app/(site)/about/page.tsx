@@ -24,11 +24,7 @@ export default function AboutPage() {
       {/* ---------------------------------------------------------- Story */}
       <article aria-labelledby="story-title" className="bg-black pt-24 pb-20 lg:pt-36 lg:pb-28">
         <header className="container-luxe text-center">
-          <p className="label hero-fade flex items-center justify-center gap-4 text-gold">
-            <span aria-hidden="true" className="h-px w-10 bg-current opacity-60" />
-            {story.eyebrow}
-            <span aria-hidden="true" className="h-px w-10 bg-current opacity-60" />
-          </p>
+          <p className="label hero-fade text-stone">{story.eyebrow}</p>
           <h1
             id="story-title"
             className="hero-fade mt-8 text-6xl font-light italic sm:text-7xl lg:text-8xl"
@@ -114,7 +110,7 @@ export default function AboutPage() {
                       </div>
                     )}
                   </div>
-                  <p className="label mt-8 text-gold-deep">{person.title}</p>
+                  <p className="label mt-8 text-taupe">{person.title}</p>
                   <h3 id={`leader-${i}`} className="mt-3 text-4xl">
                     {person.name}
                   </h3>
@@ -149,7 +145,7 @@ export default function AboutPage() {
                 <Reveal as="li" key={r.id} delay={i * 120} className="py-8">
                   <h3 className="text-3xl">{r.name}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-stone">{r.summary}</p>
-                  <p className="label mt-4 text-gold">{r.areas.map((a) => a.name).join(" · ")}</p>
+                  <p className="label mt-4 text-stone">{r.areas.map((a) => a.name).join(" · ")}</p>
                 </Reveal>
               ))}
             </ul>
@@ -164,8 +160,10 @@ export default function AboutPage() {
           <ul className="mt-16 grid gap-px bg-ivory/10 sm:grid-cols-2 lg:grid-cols-4">
             {values.items.map((v, i) => (
               <Reveal as="li" key={v.title} delay={i * 100} className="bg-charcoal p-8 lg:p-10">
-                <span aria-hidden="true" className="block h-2 w-2 rotate-45 bg-gold" />
-                <h3 className="mt-8 text-3xl">{v.title}</h3>
+                <span aria-hidden="true" className="label block text-stone">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-6 text-4xl">{v.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-stone">{v.text}</p>
               </Reveal>
             ))}

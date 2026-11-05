@@ -25,9 +25,9 @@
   --color-danger-deep: #a3352a;
 
   --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --font-sans: var(--font-montserrat), Montserrat, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-jost), Jost, "Helvetica Neue", Arial, sans-serif;
 
-  --tracking-label: 0.28em;
+  --tracking-label: 0.3em;
   --tracking-wide-xl: 0.42em;
 
   --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
@@ -53,7 +53,8 @@
     color: var(--color-ivory);
     font-family: var(--font-sans);
     font-weight: 400;
-    line-height: 1.7;
+    line-height: 1.75;
+    font-size: 1.0625rem;
   }
 
   h1,
@@ -61,9 +62,9 @@
   h3,
   h4 {
     font-family: var(--font-serif);
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.005em;
+    font-weight: 300;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
     text-wrap: balance;
   }
 
@@ -95,7 +96,7 @@
   /* Wide-tracked small caps label, echoing the "DEVELOPMENT" wordmark */
   .label {
     font-family: var(--font-sans);
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: var(--tracking-label);
     text-transform: uppercase;
@@ -180,6 +181,85 @@
   select.field option {
     background: var(--color-charcoal);
     color: var(--color-ivory);
+  }
+
+  .on-light select.field option {
+    background: var(--color-ivory);
+    color: var(--color-black);
+  }
+
+  /* Fill-in-the-blank fields inside sentences (contact page note) */
+  .field-inline {
+    display: inline-block;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 0.15em;
+    border: 0;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: 1.25;
+    vertical-align: baseline;
+    field-sizing: content;
+    transition: border-color 0.3s var(--ease-luxe);
+  }
+
+  .field-inline::placeholder {
+    color: var(--color-taupe);
+    font-style: italic;
+  }
+
+  .field-inline:hover {
+    border-bottom-color: currentColor;
+  }
+
+  .field-inline:focus {
+    outline: none;
+    border-bottom-color: var(--color-gold-deep);
+    box-shadow: 0 1px 0 0 var(--color-gold-deep);
+  }
+
+  .field-inline[aria-invalid="true"] {
+    border-bottom-color: var(--color-danger-deep);
+  }
+
+  select.field-inline {
+    appearance: none;
+    cursor: pointer;
+    padding-right: 0.9em;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%237a5f33' stroke-width='1.4'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.1em center;
+    background-size: 0.45em;
+  }
+
+  select.field-inline:invalid {
+    color: var(--color-taupe);
+    font-style: italic;
+  }
+
+  select.field-inline option {
+    background: var(--color-ivory);
+    color: var(--color-black);
+    font-style: normal;
+  }
+
+  /* Lined writing paper for the contact message */
+  .lined-paper {
+    --line: 2.25rem;
+    line-height: var(--line);
+    min-height: calc(var(--line) * 5);
+    background-image: linear-gradient(
+      to bottom,
+      transparent calc(var(--line) - 1px),
+      rgb(0 0 0 / 0.14) calc(var(--line) - 1px)
+    );
+    background-size: 100% var(--line);
+    background-attachment: local;
+    border: 0;
+    padding: 0;
   }
 
   textarea.field {

@@ -52,7 +52,7 @@ export function SubmissionUpdateForm({
         <p className="mt-2 text-xs text-stone">Visible to the team only.</p>
       </div>
       <div className="flex items-center gap-5">
-        <button type="submit" disabled={pending} className={buttonClass("gold")}>
+        <button type="submit" disabled={pending} className={buttonClass("light")}>
           {pending ? "Saving…" : "Save"}
         </button>
         <p role="status" className={`text-sm ${state.error ? "text-danger" : "text-gold"}`}>

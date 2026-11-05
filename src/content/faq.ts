@@ -28,6 +28,14 @@ export const faqs: Faq[] = [
     reviewed: false,
   },
   {
+    id: "work-directly",
+    question: "Will I work directly with the owner?",
+    answer: [
+      "Yes. AB Development is a family business, and you work directly with Birti, our owner, from the first conversation through the final walkthrough. There's no sales team or layer of representatives in between, and you'll always know who to call.",
+    ],
+    reviewed: false,
+  },
+  {
     id: "where-do-you-build",
     question: "Where do you build?",
     answer: [
@@ -114,7 +122,7 @@ export const faqs: Faq[] = [
     id: "communication",
     question: "How will we communicate during the project?",
     answer: [
-      "You will have a dedicated point of contact and regular updates on progress, schedule, and any decisions needed. We are available 24/7 by phone and email, and we schedule site walkthroughs at key milestones.",
+      "Directly with us. You'll get regular updates on progress, schedule, and any decisions coming up, and you can reach us 24/7 by phone or email. We also walk the site with you at key milestones.",
     ],
     reviewed: false,
   },

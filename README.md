@@ -1,6 +1,6 @@
 # AB Development: abdevelopment.ai
 
-**Your Dream, Our Build.** The website for AB Development, a woman-owned custom home builder serving Long Island, New York City, and Westchester.
+**Your Dream, Our Build.** The website for AB Development, a family-owned custom home builder and developer serving Long Island, New York City, and Westchester.
 
 Target public launch: **Friday, December 25, 2026**, with a soft launch December 15 to 18. See [docs/LAUNCH-PLAN.md](docs/LAUNCH-PLAN.md).
 
@@ -36,7 +36,7 @@ Target public launch: **Friday, December 25, 2026**, with a soft launch December
 | Email | **Resend** | Simple API, good deliverability, and it works with the Supabase login emails over SMTP. |
 | Hosting | **Vercel** | Built for Next.js, automatic HTTPS, and preview links for every change. |
 
-Design system: true black, warm white, charcoal, and a soft muted gold. Headlines use Cormorant Garamond and body text uses Montserrat. All colors are CSS variables in [`src/app/globals.css`](src/app/globals.css).
+Design system: true black, warm white, charcoal, and a soft muted gold. Headlines use Cormorant Garamond and body text uses Jost. All colors are CSS variables in [`src/app/globals.css`](src/app/globals.css).
 
 ## 2. Run it on your computer
 
@@ -76,7 +76,9 @@ Open the file, change the text between the quotation marks, save, and push to Gi
 Tips:
 - Keep the quotation marks and commas. If a sentence contains a double quote, use a single quote instead, or ask your developer.
 - **FAQ:** every answer is marked as a draft. After you approve an answer, set `reviewed: true` on it. That removes its "Draft answer" tag and lets search engines show it.
-- **Testimonials:** replace the placeholder slots with real reviews only after the client signs a release (see [section 14](#14-legal-releases-and-licensing)), then set `placeholder: false`.
+- **Testimonials:** the section stays hidden until at least one real review exists. Add genuine reviews only after the client signs a release (see [section 14](#14-legal-releases-and-licensing)), then set `placeholder: false`.
+- **The owner's voice:** the personal notes on the Home and Contact pages, the "Write to Birti" form, and the confirmation email use `owner` in [`src/config/business.ts`](src/config/business.ts) (name, first name, title). The homepage note itself is `intro` in [`src/content/home.ts`](src/content/home.ts).
+- **Services:** services with `featured: true` in [`src/config/services.ts`](src/config/services.ts) get a large photo and full write-up on the Home page; the rest appear in the short "We also take on" list. Order in the file is the order on the page.
 - **Leadership bios and quotes** are placeholders in [`src/content/about.ts`](src/content/about.ts).
 - **Legal pages:** text is in [`src/content/legal/`](src/content/legal/). `{{email}}`, `{{phone}}`, and similar tokens fill in automatically from `business.ts`. Remove the `"DRAFT: attorney review required before launch."` line from each file's `intro` only after your attorney approves it.
 
@@ -90,7 +92,11 @@ All placeholders are elegant line drawings labeled **PLACEHOLDER**, so nothing t
 
 **Spec homes:** set `category: "spec-homes"` and optionally `specStatus: "Available" | "Under Contract" | "Sold"`. Each spec home gets an **Inquire** button. Add `listingUrl` later to link to a Selling Long Island listing.
 
-**Hero, services, and story images:** change `image.src` in [`src/content/home.ts`](src/content/home.ts) and [`src/config/services.ts`](src/config/services.ts). An optional hero background video can go in `hero.video`.
+**Homepage hero:** the first screen is a slow crossfade between your best homes. Put 1 to 4 wide exterior photos (2400px+ wide) in `public/images/home/` and list them under `hero.slides` in [`src/content/home.ts`](src/content/home.ts), each with a short caption like `"Custom Home · Nassau County"`. Remove `placeholder: true` from each.
+
+**Selected Work (homepage):** shows the gallery items marked `featured: true` in [`src/content/gallery.ts`](src/content/gallery.ts). The first is shown largest, so lead with your strongest project. Four works best.
+
+**Service and story images:** change `image.src` in [`src/config/services.ts`](src/config/services.ts) and `storyTeaser.image` in [`src/content/home.ts`](src/content/home.ts).
 
 **Portrait of Aman and Birti:** add the photo to `public/images/about/` and set `portrait.src` in [`src/content/about.ts`](src/content/about.ts).
 

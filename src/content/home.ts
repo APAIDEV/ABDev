@@ -1,91 +1,108 @@
 /**
  * HOME PAGE CONTENT
  * ----------------------------------------------------------------------------
- * Headlines, process steps, and teaser copy for the Home page.
- * Services are edited in /src/config/services.ts.
- * Testimonials are edited in /src/content/testimonials.ts.
+ * Headlines and copy for the Home page.
+ * - Services are edited in /src/config/services.ts.
+ * - The projects shown under "Selected Work" are the gallery items marked
+ *   `featured: true` in /src/content/gallery.ts.
+ * - Testimonials (/src/content/testimonials.ts) appear only once real ones are added.
  */
 
 export const home = {
   hero: {
-    eyebrow: "Woman-Owned Custom Home Builder",
-    // The headline and supporting line come from /src/config/business.ts (tagline, supportingLine).
-    regions: "Long Island · New York City · Westchester",
+    eyebrow: "Custom Homes & New Development",
+    // The headline comes from /src/config/business.ts (tagline).
+    subhead: "Family-owned builders of custom homes across Long Island, New York City, and Westchester.",
     primaryCta: "Book a Consultation",
-    secondaryCta: "View Our Work",
-    /** Swap for a real photo, e.g. "/images/home/hero.jpg" (2400px wide or larger). */
-    image: {
-      src: "/images/placeholders/hero.svg",
-      alt: "Placeholder illustration of a luxury custom home at dusk",
-    },
+    secondaryCta: "View Projects",
     /**
-     * Optional background video, e.g. "/videos/hero.mp4" (muted, looping, under 10 MB).
-     * Leave empty to use the image. The image is always used for visitors who
-     * prefer reduced motion.
+     * HERO SLIDESHOW
+     * The first homepage screen fades between these images. Use your strongest
+     * finished projects, ideally wide exterior shots (2400px+ wide).
+     * Put photos in /public/images/home/ and update `src`. 1 to 4 slides work best.
      */
-    video: "",
-  },
-
-  intro: {
-    eyebrow: "Welcome",
-    title: "Homes built with intention, from the first sketch to the final key.",
-    body: "AB Development is a woman-owned custom home builder serving Long Island, New York City, and Westchester. We design and build homes around the way you want to live, and we treat every project as personally as if it were our own.",
-  },
-
-  process: {
-    eyebrow: "How We Work",
-    title: "Four steps, one trusted team.",
-    steps: [
+    slides: [
       {
-        title: "Vision",
-        text: "We start by listening. Your goals, your lifestyle, your site, and your budget shape everything that follows.",
+        src: "/images/placeholders/hero.svg",
+        alt: "Placeholder image of a modern custom home at dusk",
+        caption: "Modern Residence · Long Island",
+        placeholder: true,
       },
       {
-        title: "Design",
-        text: "Layouts, materials, and finishes come together with our design guidance and your architect, refined until it feels right.",
+        src: "/images/placeholders/hero-2.svg",
+        alt: "Placeholder image of a two-story custom home at dusk",
+        caption: "Custom Home · Nassau County",
+        placeholder: true,
       },
       {
-        title: "Build",
-        text: "Permits, scheduling, trades, and quality control, all managed by us, with clear updates at every stage.",
-      },
-      {
-        title: "Handoff",
-        text: "A careful final walkthrough, every detail resolved, and the keys to a home that was made for you.",
+        src: "/images/placeholders/hero-3.svg",
+        alt: "Placeholder image of a new modern farmhouse at dusk",
+        caption: "New Construction · Suffolk County",
+        placeholder: true,
       },
     ],
   },
 
-  services: {
-    eyebrow: "What We Do",
-    title: "Services",
-    intro: "Six ways we bring homes to life across Long Island, New York City, and Westchester.",
+  /** Personal introduction under the hero, in the owner's voice. */
+  intro: {
+    title: "When you build with us, you work with me.",
+    body: [
+      "AB Development is a family business. There's no call center and no layer of representatives between you and the people building your home. You'll have my number, and you'll be talking to me.",
+      "Every home gets our full attention, from the first walk of the property to the day you get the keys.",
+    ],
+    // Signature line uses the owner's name from /src/config/business.ts.
   },
 
-  gallery: {
-    eyebrow: "Selected Work",
-    title: "From our portfolio",
-    cta: "View the Full Gallery",
+  work: {
+    title: "Selected Work",
+    intro: "A look at the homes we've built across Long Island, New York City, and Westchester.",
+    cta: "View All Projects",
+  },
+
+  services: {
+    title: "What We Build",
+    intro:
+      "Our focus is custom homes and new development, with a few related services for the clients we already build for.",
+    alsoTitle: "We also take on",
+  },
+
+  process: {
+    title: "How it works",
+    steps: [
+      {
+        title: "Vision",
+        text: "We meet, walk the property, and talk through how you want to live and what you want to spend.",
+      },
+      {
+        title: "Design",
+        text: "Plans, layouts, and finishes come together with your architect, until it feels exactly right.",
+      },
+      {
+        title: "Build",
+        text: "We handle permits, trades, and scheduling, and you hear from us directly at every stage.",
+      },
+      { title: "Handoff", text: "A careful final walkthrough, every last detail resolved, and the keys to your home." },
+    ],
   },
 
   storyTeaser: {
     eyebrow: "Our Story",
     title: "One home at a time.",
-    body: "AB Development began with two people, wildly in love, who believed a house should become a home filled with memories. Today that belief lives on in every home we build.",
+    body: "AB Development began with two people, wildly in love, who believed a house should become a home filled with memories. That belief is in every home we build.",
     cta: "Read Our Story",
     image: {
       src: "/images/placeholders/story.svg",
-      alt: "Placeholder illustration of warm light in a home's front window",
+      alt: "Placeholder image of a warmly lit living room at dusk",
     },
   },
 
   testimonials: {
-    eyebrow: "Kind Words",
     title: "From our clients",
   },
 
   finalCta: {
-    title: "Your dream home starts with a conversation.",
-    body: "Tell us about your vision. We are available 24/7 and happy to talk through your project, wherever you are in the process.",
+    title: "Let's talk about your home.",
+    body: "Call or send a note, any time. You'll hear back from me personally.",
     button: "Book a Consultation",
   },
 };

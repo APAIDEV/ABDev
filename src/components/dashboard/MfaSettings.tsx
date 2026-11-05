@@ -121,12 +121,12 @@ export function MfaSettings() {
               className="field font-serif text-2xl tracking-[0.4em]"
             />
           </div>
-          <button type="submit" className={buttonClass("gold")}>
+          <button type="submit" className={buttonClass("light")}>
             Confirm
           </button>
         </form>
       ) : (
-        <button type="button" onClick={start} className={buttonClass("gold")}>
+        <button type="button" onClick={start} className={buttonClass("light")}>
           Set Up Two-Factor
         </button>
       )}

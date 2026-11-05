@@ -5,8 +5,8 @@ import logo from "@/config/logo.generated.json";
 /**
  * The AB Development logo. Generated from /public/logo.jpeg by
  * scripts/generate-brand-assets.mjs (runs automatically on build).
- * White linework on black: on any non-black surface, `mix-blend-lighten`
- * drops the black background so only the linework shows.
+ * The header/footer use a transparent PNG made from it (white linework only),
+ * so the logo sits cleanly over photos.
  */
 export function Logo({
   height = 56,
@@ -26,7 +26,7 @@ export function Logo({
       height={height}
       loading="eager"
       sizes={`${width * 2}px`}
-      className={`mix-blend-lighten ${className}`}
+      className={className}
       style={{ width, height }}
     />
   );

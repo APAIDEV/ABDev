@@ -60,32 +60,34 @@ export function Header({ logo }: { logo: ReactNode }) {
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : !href.includes("#") && pathname.startsWith(href);
+  // On the homepage the header floats transparently over the hero photo until you scroll.
+  const overlay = pathname === "/" && !scrolled && !open;
 
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-40 transition-[background-color,border-color] duration-500 ${
+      className={`sticky top-0 z-40 transition-[background-color,border-color] duration-700 ${
         open
           ? "border-b border-ivory/10 bg-black" // no backdrop-filter while open: it would trap the fixed menu inside the header
-          : scrolled
-            ? "border-b border-ivory/10 bg-black/95 backdrop-blur"
-            : "border-b border-transparent bg-black"
+          : overlay
+            ? "border-b border-ivory/0 bg-transparent"
+            : scrolled
+              ? "border-b border-ivory/10 bg-black/90 backdrop-blur-md"
+              : "border-b border-ivory/10 bg-black"
       }`}
     >
       <div className="container-luxe flex h-20 items-center justify-between gap-6 lg:h-24">
         {logo}
 
         <nav aria-label="Main" className="hidden lg:block">
-          <ul className="flex items-center gap-6 xl:gap-8 2xl:gap-10">
+          <ul className="flex items-center gap-8 xl:gap-11">
             {mainNav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className={`label relative py-2 transition-colors duration-300 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-gold after:transition-transform after:duration-500 hover:text-gold ${
-                    isActive(item.href)
-                      ? "text-gold after:scale-x-100"
-                      : "text-ivory after:scale-x-0 hover:after:scale-x-100"
+                  className={`label relative py-2 text-ivory transition-opacity duration-300 after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-ivory after:transition-transform after:duration-500 ${
+                    isActive(item.href) ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100"
                   }`}
                 >
                   {item.label}
@@ -100,21 +102,21 @@ export function Header({ logo }: { logo: ReactNode }) {
             href={`tel:${business.phone.tel}`}
             className="label hidden items-center gap-2.5 whitespace-nowrap text-ivory transition-colors hover:text-gold xl:inline-flex"
           >
-            <PhoneIcon size={15} className="text-gold" />
+            <PhoneIcon size={15} />
             {business.phone.display}
           </a>
           <a
             href={`tel:${business.phone.tel}`}
             aria-label={`Call AB Development at ${business.phone.display}`}
-            className="inline-flex h-11 w-11 items-center justify-center text-gold xl:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center text-ivory xl:hidden"
           >
             <PhoneIcon size={20} />
           </a>
           <Link
-            href={bookHref}
-            className="label hidden border border-gold px-5 py-3 whitespace-nowrap text-gold transition-colors duration-500 hover:bg-gold hover:text-black sm:inline-flex"
+            href="/contact"
+            className="label hidden border border-ivory/50 px-6 py-3 whitespace-nowrap text-ivory transition-colors duration-500 hover:border-ivory hover:bg-ivory hover:text-black sm:inline-flex"
           >
-            Book a Consultation
+            Let&apos;s Talk
           </Link>
           <button
             ref={toggleRef}
@@ -145,7 +147,7 @@ export function Header({ logo }: { logo: ReactNode }) {
                   href={item.href}
                   onClick={() => setOpen(false)}
                   aria-current={isActive(item.href) ? "page" : undefined}
-                  className={`block py-5 font-serif text-3xl ${isActive(item.href) ? "text-gold" : "text-ivory"}`}
+                  className={`block py-5 font-serif text-4xl font-light ${isActive(item.href) ? "text-gold" : "text-ivory"}`}
                 >
                   {item.label}
                 </Link>
@@ -156,7 +158,7 @@ export function Header({ logo }: { logo: ReactNode }) {
             <Link
               href={bookHref}
               onClick={() => setOpen(false)}
-              className="label inline-flex min-h-12 items-center justify-center bg-gold px-6 py-4 text-black"
+              className="label inline-flex min-h-12 items-center justify-center bg-ivory px-6 py-4 text-black"
             >
               Book a Consultation
             </Link>
@@ -164,7 +166,7 @@ export function Header({ logo }: { logo: ReactNode }) {
               href={`tel:${business.phone.tel}`}
               className="label inline-flex min-h-12 items-center justify-center gap-3 border border-ivory/30 px-6 py-4 text-ivory"
             >
-              <PhoneIcon size={15} className="text-gold" /> {business.phone.display}
+              <PhoneIcon size={15} /> {business.phone.display}
             </a>
           </div>
           <p className="label mt-8 text-center text-stone">{business.hours.display}</p>

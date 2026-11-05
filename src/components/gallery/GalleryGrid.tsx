@@ -14,8 +14,6 @@ import { SpecStatusTag } from "./SpecStatusTag";
 
 type CategoryId = (typeof galleryCategories)[number]["id"];
 
-const shapeClass = { landscape: "aspect-[4/3]", portrait: "aspect-[4/5]", square: "aspect-square" };
-
 export function GalleryGrid() {
   // `null` until a filter is clicked, so a shared link (?category=dormers) applies on load.
   const [picked, setCategory] = useState<CategoryId | null>(null);
@@ -59,11 +57,11 @@ export function GalleryGrid() {
 
   return (
     <>
-      <div className="flex flex-col gap-6 border-y border-ivory/10 py-5 md:flex-row md:items-center md:justify-between">
+      <div className="flex flex-col gap-6 border-b border-ivory/15 pb-2 md:flex-row md:items-end md:justify-between">
         <div
           role="group"
           aria-label="Filter projects"
-          className="no-scrollbar -mx-1 flex gap-1 overflow-x-auto md:flex-wrap"
+          className="no-scrollbar -mx-1 flex gap-6 overflow-x-auto md:flex-wrap md:gap-8"
         >
           {galleryCategories.map((c) => (
             <button
@@ -71,8 +69,8 @@ export function GalleryGrid() {
               type="button"
               aria-pressed={category === c.id}
               onClick={() => choose(c.id)}
-              className={`label shrink-0 px-4 py-3 transition-colors duration-300 ${
-                category === c.id ? "bg-ivory text-black" : "text-stone hover:text-ivory"
+              className={`label relative shrink-0 py-4 transition-colors duration-300 after:absolute after:inset-x-0 after:-bottom-[9px] after:h-px after:bg-ivory after:transition-transform after:duration-500 ${
+                category === c.id ? "text-ivory after:scale-x-100" : "text-stone after:scale-x-0 hover:text-ivory"
               }`}
             >
               {c.label}
@@ -81,9 +79,9 @@ export function GalleryGrid() {
         </div>
         <ShareButton
           path={filterPath}
-          title={`AB Development Gallery${category === "all" ? "" : `: ${categoryLabel(category)}`}`}
-          label="Share Gallery"
-          className="text-gold hover:text-gold-soft"
+          title={`AB Development Projects${category === "all" ? "" : `: ${categoryLabel(category)}`}`}
+          label="Share"
+          className="py-4 text-stone hover:text-ivory"
         />
       </div>
 
@@ -91,54 +89,63 @@ export function GalleryGrid() {
         Showing {items.length} {items.length === 1 ? "project" : "projects"}
       </p>
 
-      <ul className="mt-10 columns-1 gap-5 sm:columns-2 lg:columns-3">
-        {items.map((item, i) => (
-          <li key={item.slug} className="group relative mb-5 break-inside-avoid">
-            <button
-              type="button"
-              onClick={(e) => {
-                lastTrigger.current = e.currentTarget;
-                setOpenIndex(i);
-              }}
-              className="relative block w-full overflow-hidden bg-charcoal text-left"
-              aria-label={`View ${item.title}${item.media === "video" ? " (video)" : ""}`}
-            >
-              <div className={`relative ${shapeClass[item.shape ?? "landscape"]}`}>
-                <Image
-                  src={itemImage(item)}
-                  alt={item.alt}
-                  fill
-                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
-                  className="object-cover transition-transform duration-[1.4s] ease-(--ease-luxe) group-hover:scale-105"
+      <ul className="mt-14 grid gap-x-10 gap-y-20 md:grid-cols-2 lg:gap-x-16 lg:gap-y-28">
+        {items.map((item, i) => {
+          const lead = i === 0 && items.length > 2;
+          return (
+            <li key={item.slug} className={`group ${lead ? "md:col-span-2" : ""}`}>
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    lastTrigger.current = e.currentTarget;
+                    setOpenIndex(i);
+                  }}
+                  className="relative block w-full overflow-hidden bg-charcoal text-left"
+                  aria-label={`View ${item.title} larger${item.media === "video" ? " (video)" : ""}`}
+                >
+                  <div className={`relative ${lead ? "aspect-[4/3] md:aspect-[16/8]" : "aspect-[4/3]"}`}>
+                    <Image
+                      src={itemImage(item)}
+                      alt={item.alt}
+                      fill
+                      sizes={lead ? "100vw" : "(min-width: 768px) 50vw, 100vw"}
+                      className="object-cover transition-transform duration-[1.6s] ease-(--ease-luxe) group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  {item.media === "video" && (
+                    <span className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-ivory/70 bg-black/40 text-ivory backdrop-blur-sm">
+                      <PlayIcon size={20} />
+                    </span>
+                  )}
+                </button>
+                <span className="pointer-events-none absolute bottom-4 left-4 flex flex-wrap gap-2">
+                  {item.specStatus && <SpecStatusTag status={item.specStatus} />}
+                  {item.placeholder && <PlaceholderTag>Placeholder photo</PlaceholderTag>}
+                </span>
+              </div>
+              <div className="mt-6 flex items-start justify-between gap-6">
+                <div>
+                  <h2 className="text-3xl lg:text-4xl">
+                    <Link href={sharePath(item)} className="hover:text-gold-soft">
+                      {item.title}
+                    </Link>
+                  </h2>
+                  <p className="label mt-3 text-stone">
+                    {categoryLabel(item.category)} · {item.location}
+                  </p>
+                </div>
+                <ShareButton
+                  path={sharePath(item)}
+                  title={item.title}
+                  text={item.description}
+                  iconOnly
+                  className="mt-1 h-10 w-10 shrink-0 justify-center text-stone hover:text-ivory"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/5 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
-              {item.media === "video" && (
-                <span className="absolute top-1/2 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold bg-black/50 text-gold">
-                  <PlayIcon size={18} />
-                </span>
-              )}
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <p className="label text-gold">{categoryLabel(item.category)}</p>
-                <p className="mt-2 font-serif text-2xl text-ivory">{item.title}</p>
-                <p className="mt-1 text-xs tracking-wider text-stone">{item.location}</p>
-              </div>
-            </button>
-            <div className="pointer-events-none absolute top-4 left-4 flex flex-wrap gap-2">
-              {item.placeholder && <PlaceholderTag />}
-              {item.specStatus && <SpecStatusTag status={item.specStatus} />}
-            </div>
-            <div className="absolute top-3 right-3">
-              <ShareButton
-                path={sharePath(item)}
-                title={item.title}
-                text={item.description}
-                iconOnly
-                className="h-10 w-10 justify-center bg-black/60 text-ivory hover:text-gold"
-              />
-            </div>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ul>
 
       <dialog
@@ -219,7 +226,7 @@ export function GalleryGrid() {
                 {current.category === "spec-homes" && (
                   <Link
                     href={`/contact?project=${encodeURIComponent("Spec Home Inquiry")}&home=${encodeURIComponent(current.title)}#book`}
-                    className={buttonClass("gold", "px-5! py-3!")}
+                    className={buttonClass("light", "px-5! py-3!")}
                   >
                     Inquire
                   </Link>

@@ -1,11 +1,13 @@
 /**
  * SERVICES
  * ----------------------------------------------------------------------------
- * The six services shown on the Home page (cards + detailed sections) and in
- * search-engine data. Copy below is placeholder: review and edit freely.
+ * The six services on the Home page ("What We Build") and in search-engine data.
  *
- * `id` becomes the anchor link (e.g. abdevelopment.ai/#dormers). Avoid
- * changing ids after launch, since people may have shared those links.
+ * - `featured: true` services get a large photo and full description.
+ *   The others appear in a short, clean list underneath.
+ * - Order here is the order on the page.
+ * - `id` becomes the anchor link (e.g. abdevelopment.ai/#dormers). Avoid
+ *   changing ids after launch, since people may have shared those links.
  *
  * To use a real photo, put it in /public/images/services/ and change `image.src`.
  */
@@ -13,10 +15,12 @@
 export type Service = {
   id: string;
   title: string;
+  /** One-line summary (cards, search engines). */
   short: string;
-  /** Longer copy for the detailed section on the Home page. */
+  /** Full description for featured services. Each string is a paragraph. */
   body: string[];
   highlights: string[];
+  featured: boolean;
   /** Pre-selects this option in the contact form's "Project type" field. */
   projectType: string;
   image: { src: string; alt: string; placeholder?: boolean };
@@ -28,136 +32,118 @@ export const services: Service[] = [
     title: "Custom Home Building",
     short: "Ground-up homes designed around your vision.",
     body: [
-      "A custom home begins with the way you want to live. We listen first, then guide every decision from site and layout to the last finish, so the finished home feels unmistakably yours.",
-      "One accountable team carries your project from the first sketch to the day we hand you the keys.",
+      "This is the heart of what we do. We sit down with you, walk the land, and listen to how you want to live: where the morning light should land, where the kids will do homework, where everyone ends up on a Sunday night.",
+      "From there we carry the whole build, from plans and permits to the final walkthrough, and you deal with us directly the entire way.",
     ],
-    highlights: [
-      "Site evaluation and feasibility",
-      "Architect and engineer coordination",
-      "Permits and approvals managed for you",
-      "Transparent schedules and budgets",
-    ],
+    highlights: ["Site and feasibility review", "Architect and engineer coordination", "Permits handled for you"],
+    featured: true,
     projectType: "Custom Home",
     image: {
       src: "/images/placeholders/custom-home.svg",
-      alt: "Placeholder illustration of a two-story custom home elevation",
+      alt: "Placeholder image of a custom home at dusk",
       placeholder: true,
     },
   },
   {
     id: "new-construction",
-    title: "New Construction",
+    title: "New Construction & Development",
     short: "New builds, including multi-unit and development projects.",
     body: [
-      "From single-family homes to multi-unit residences and development parcels, we bring disciplined planning and quality craftsmanship to every new build.",
-      "We work alongside owners, investors, and design teams to keep projects on schedule and built to last.",
+      "Single-family homes, multi-unit residences, and full development parcels. We plan carefully, build to last, and run every site with the same attention we'd give our own home.",
+      "Owners and investors get one accountable builder who answers the phone and knows every detail of the project.",
     ],
     highlights: [
-      "Single-family and multi-unit builds",
+      "Single-family and multi-unit",
       "Development and investment projects",
-      "Construction management",
-      "Code-compliant, durable construction",
+      "Start-to-finish construction management",
     ],
+    featured: true,
     projectType: "New Construction",
     image: {
       src: "/images/placeholders/new-construction.svg",
-      alt: "Placeholder illustration of a row of new multi-unit townhomes",
-      placeholder: true,
-    },
-  },
-  {
-    id: "renovations",
-    title: "Renovations",
-    short: "Whole-home and partial remodels.",
-    body: [
-      "Whether you are reimagining a single kitchen or transforming an entire house, we respect the character of your home while making it work beautifully for today.",
-      "We plan carefully, protect your home during construction, and communicate at every step.",
-    ],
-    highlights: [
-      "Whole-home remodels",
-      "Kitchens and baths",
-      "Layout reconfiguration",
-      "Interior and exterior refreshes",
-    ],
-    projectType: "Renovation",
-    image: {
-      src: "/images/placeholders/renovation.svg",
-      alt: "Placeholder illustration of a renovated home interior",
-      placeholder: true,
-    },
-  },
-  {
-    id: "dormers",
-    title: "Dormers",
-    short: "Dormer additions that add light, space, and headroom.",
-    body: [
-      "A well-designed dormer can turn a cramped upper floor into bright, livable space: a primary suite, a home office, or rooms for a growing family.",
-      "We design dormers that look as though they were always part of the house.",
-    ],
-    highlights: [
-      "Shed, gable, and full-width dormers",
-      "Added headroom and natural light",
-      "Structural planning and permits",
-      "Seamless rooflines and finishes",
-    ],
-    projectType: "Dormer",
-    image: {
-      src: "/images/placeholders/dormer.svg",
-      alt: "Placeholder illustration of a home with a dormer addition",
-      placeholder: true,
-    },
-  },
-  {
-    id: "design-consulting",
-    title: "Design Consulting",
-    short: "Planning, layout, finishes, and material guidance.",
-    body: [
-      "Good design is a series of thoughtful decisions. We help you make them with confidence, from space planning and layout to finishes, fixtures, and materials.",
-      "Bring us a dream, a sketch, or a set of plans. We will help you refine it into something buildable and beautiful.",
-    ],
-    highlights: [
-      "Space planning and layout",
-      "Finish and material selection",
-      "Budget-conscious design guidance",
-      "Pre-purchase and pre-construction advice",
-    ],
-    projectType: "Design Consulting",
-    image: {
-      src: "/images/placeholders/design-consulting.svg",
-      alt: "Placeholder illustration of an architectural floor plan",
+      alt: "Placeholder image of new multi-unit townhomes at dusk",
       placeholder: true,
     },
   },
   {
     id: "builder-spec-homes",
     title: "Builder Spec Homes",
-    short: "Homes AB Development builds and offers for sale.",
-    body: [
-      "Our spec homes are built with the same care we bring to every custom project: considered layouts, quality materials, and finishes chosen to last.",
-      "Ask us about current and upcoming homes. Sales are handled through a licensed real estate broker.",
-    ],
-    highlights: [
-      "Move-in ready new homes",
-      "Thoughtful, livable layouts",
-      "Quality finishes throughout",
-      "Ask about upcoming releases",
-    ],
+    short: "New homes we design, build, and offer for sale, finished with the same care as our custom work.",
+    body: [],
+    highlights: [],
+    featured: false,
     projectType: "Spec Home Inquiry",
     image: {
       src: "/images/placeholders/spec-home.svg",
-      alt: "Placeholder illustration of a modern spec home",
+      alt: "Placeholder image of a new spec home at dusk",
+      placeholder: true,
+    },
+  },
+  {
+    id: "dormers",
+    title: "Dormers",
+    short: "More light, space, and headroom upstairs, designed to look like it was always there.",
+    body: [],
+    highlights: [],
+    featured: false,
+    projectType: "Dormer",
+    image: {
+      src: "/images/placeholders/dormer.svg",
+      alt: "Placeholder image of a home with a dormer addition",
+      placeholder: true,
+    },
+  },
+  {
+    id: "renovations",
+    title: "Renovations",
+    short: "Whole-home and partial remodels that respect what you love about your house.",
+    body: [],
+    highlights: [],
+    featured: false,
+    projectType: "Renovation",
+    image: {
+      src: "/images/placeholders/renovation.svg",
+      alt: "Placeholder image of a renovated living room",
+      placeholder: true,
+    },
+  },
+  {
+    id: "design-consulting",
+    title: "Design Consulting",
+    short: "Layouts, finishes, and materials: help making the big decisions with confidence.",
+    body: [],
+    highlights: [],
+    featured: false,
+    projectType: "Design Consulting",
+    image: {
+      src: "/images/placeholders/design-consulting.svg",
+      alt: "Placeholder image of a kitchen interior",
       placeholder: true,
     },
   },
 ];
 
-/** Options for the "Project type" dropdown on the contact form. */
-export const projectTypeOptions = [
+/**
+ * Options for the "Project type" field on the contact form.
+ * `value` is what gets saved; `phrase` is how it reads in the sentence
+ * "I'm thinking about ___".
+ */
+export const projectTypes = [
+  { value: "Custom Home", phrase: "building a custom home" },
+  { value: "New Construction", phrase: "a new construction or development project" },
+  { value: "Spec Home Inquiry", phrase: "one of your homes for sale" },
+  { value: "Dormer", phrase: "adding a dormer" },
+  { value: "Renovation", phrase: "a renovation" },
+  { value: "Design Consulting", phrase: "design consulting" },
+  { value: "Other", phrase: "something else" },
+] as const;
+
+export const projectTypeOptions = projectTypes.map((p) => p.value) as unknown as readonly [
   "Custom Home",
   "New Construction",
-  "Renovation",
-  "Dormer",
-  "Design Consulting",
   "Spec Home Inquiry",
+  "Dormer",
+  "Renovation",
+  "Design Consulting",
   "Other",
-] as const;
+];

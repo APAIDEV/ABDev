@@ -85,7 +85,7 @@ export function CookieConsent() {
               >
                 Manage
               </button>
-              <button type="button" className={buttonClass("gold", "px-5! py-3!")} onClick={() => save(true)}>
+              <button type="button" className={buttonClass("light", "px-5! py-3!")} onClick={() => save(true)}>
                 Accept
               </button>
             </div>
@@ -138,7 +138,7 @@ export function CookieConsent() {
             <button type="button" className={buttonClass("outline", "px-5! py-3!")} onClick={() => save(false)}>
               Reject All
             </button>
-            <button type="button" className={buttonClass("gold", "px-5! py-3!")} onClick={() => save(analyticsChoice)}>
+            <button type="button" className={buttonClass("light", "px-5! py-3!")} onClick={() => save(analyticsChoice)}>
               Save Choices
             </button>
           </div>

@@ -16,14 +16,14 @@ export function Footer() {
         <div className="grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <Logo height={84} />
-            <p className="mt-8 font-serif text-2xl text-ivory">{business.tagline}</p>
+            <p className="mt-8 font-serif text-3xl font-light text-ivory">{business.tagline}</p>
             <p className="mt-4 max-w-sm text-sm text-stone">{business.description}</p>
-            <TrustBadges variant="stacked" className="mt-8" />
+            <TrustBadges className="mt-8 text-[0.65rem]" />
           </div>
 
           <div className="grid gap-10 sm:grid-cols-3 lg:col-span-8">
             <div>
-              <h2 className="label text-gold">Explore</h2>
+              <h2 className="label text-stone">Explore</h2>
               <ul className="mt-6 space-y-3 text-sm">
                 {mainNav.map((item) => (
                   <li key={item.href}>
@@ -41,14 +41,14 @@ export function Footer() {
             </div>
 
             <div>
-              <h2 className="label text-gold">Contact</h2>
+              <h2 className="label text-stone">Contact</h2>
               <ul className="mt-6 space-y-4 text-sm">
                 <li>
                   <a
                     href={`tel:${business.phone.tel}`}
                     className="inline-flex items-center gap-3 text-ivory hover:text-gold"
                   >
-                    <PhoneIcon size={15} className="text-gold" />
+                    <PhoneIcon size={15} className="text-stone" />
                     {business.phone.display}
                   </a>
                 </li>
@@ -57,7 +57,7 @@ export function Footer() {
                     href={`mailto:${business.email}`}
                     className="inline-flex items-center gap-3 break-all text-ivory hover:text-gold"
                   >
-                    <MailIcon size={15} className="shrink-0 text-gold" />
+                    <MailIcon size={15} className="shrink-0 text-stone" />
                     {business.email}
                   </a>
                 </li>
@@ -68,7 +68,7 @@ export function Footer() {
                     rel="noopener"
                     className="inline-flex items-center gap-3 text-ivory hover:text-gold"
                   >
-                    <InstagramIcon size={15} className="text-gold" />
+                    <InstagramIcon size={15} className="text-stone" />
                     {business.instagram.handle}
                     <span className="sr-only"> on Instagram (opens in a new tab)</span>
                   </a>
@@ -79,13 +79,13 @@ export function Footer() {
             </div>
 
             <div>
-              <h2 className="label text-gold">Where We Build</h2>
+              <h2 className="label text-stone">Where We Build</h2>
               <ul className="mt-6 space-y-3 text-sm text-stone">
                 {serviceArea.map((r) => (
                   <li key={r.id}>{r.name}</li>
                 ))}
               </ul>
-              <h2 className="label mt-10 text-gold">The AB Family</h2>
+              <h2 className="label mt-10 text-stone">The AB Family</h2>
               <ul className="mt-6 space-y-3 text-sm">
                 {brands.map((brand) => (
                   <li key={brand.name}>
@@ -111,7 +111,7 @@ export function Footer() {
 
         {activeLicenses.length > 0 && (
           <div className="mt-14 border-t border-ivory/10 pt-8">
-            <h2 className="label text-gold">Licenses</h2>
+            <h2 className="label text-stone">Licenses</h2>
             <ul className="mt-4 grid gap-2 text-xs text-stone sm:grid-cols-2 lg:grid-cols-4">
               {activeLicenses.map((l) => (
                 <li key={l.label}>

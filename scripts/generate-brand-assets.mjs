@@ -114,6 +114,16 @@ async function main() {
     .toFile(join(BRAND_DIR, "logo.jpg"));
   const finalLogo = await sharp(join(BRAND_DIR, "logo.jpg")).metadata();
 
+  // 1b. Transparent version: white linework whose opacity follows the original
+  //     brightness, so the logo sits cleanly on photos and any dark background.
+  const alpha = await sharp(join(BRAND_DIR, "logo.jpg")).greyscale().linear(1.15, -12).raw().toBuffer();
+  await sharp({
+    create: { width: finalLogo.width, height: finalLogo.height, channels: 3, background: "#ffffff" },
+  })
+    .joinChannel(alpha, { raw: { width: finalLogo.width, height: finalLogo.height, channels: 1 } })
+    .png({ compressionLevel: 9 })
+    .toFile(join(BRAND_DIR, "logo.png"));
+
   // 2. Find the AB monogram: everything above the "DEVELOPMENT" wordmark.
   const { runs, width, height } = await inkRuns(trimmed);
   let monoBottom = height - 1;
@@ -160,7 +170,7 @@ async function main() {
   // 4. Record the header logo's dimensions so the layout never shifts.
   writeFileSync(
     join(root, "src/config/logo.generated.json"),
-    JSON.stringify({ src: "/brand/logo.jpg", width: finalLogo.width, height: finalLogo.height }, null, 2) + "\n",
+    JSON.stringify({ src: "/brand/logo.png", width: finalLogo.width, height: finalLogo.height }, null, 2) + "\n",
   );
 
   console.log("brand: generated favicon, icons, header logo, and social preview image");

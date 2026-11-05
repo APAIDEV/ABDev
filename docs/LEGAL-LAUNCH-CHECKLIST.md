@@ -15,9 +15,8 @@ This checklist lists what the owner should review with the business's **attorney
 - [ ] Confirm the entity is in good standing and the biennial statement is current.
 - [ ] Decide on a business mailing address to publish (or confirm with the attorney that omitting a street address is acceptable for privacy requests, licensing, and advertising rules). Fill in `address` in `/src/config/business.ts`.
 - [ ] Consider using a business-domain email address (for example, @abdevelopment.ai) instead of a personal Gmail account for the published contact email, and update `email` in `/src/config/business.ts`.
-- [ ] **"Woman-Owned" badge.** Confirm the factual basis for the claim (ownership and control).
-- [ ] Decide whether to pursue certification: NYS Minority- and Women-Owned Business Enterprise (MWBE) certification through Empire State Development, NYC M/WBE certification through NYC Small Business Services, and/or WBENC certification.
-- [ ] Until certified, make sure no page, badge, logo, or social post implies certification (for example, avoid "Certified Woman-Owned," "WBE," or "MWBE" and any certification logos). Have the attorney approve the exact badge wording.
+- [ ] **"Family-Owned" badge and wording.** Confirm the claim is accurate for how the business is owned and run. Also confirm that the site's promise that clients work directly with the owner matches how projects will actually be handled.
+- [ ] Optional: certifications such as NYS MWBE, NYC M/WBE, or WBENC can still help with certain public or institutional projects, even though the website no longer advertises "woman-owned." Discuss with your attorney whether to pursue them.
 
 ## 2. Contractor licensing & advertising display rules
 

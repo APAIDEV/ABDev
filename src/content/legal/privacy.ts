@@ -18,7 +18,7 @@ export const doc: LegalDoc = {
       blocks: [
         {
           type: "p",
-          text: "{{legalName}} is a woman-owned custom home builder based in New York, serving Long Island (Nassau and Suffolk counties), all five New York City boroughs, and Westchester County. We operate the Site and are responsible for the personal information collected through it.",
+          text: "{{legalName}} is a family-owned custom home builder and developer based in New York, serving Long Island (Nassau and Suffolk counties), all five New York City boroughs, and Westchester County. We operate the Site and are responsible for the personal information collected through it.",
         },
         {
           type: "p",

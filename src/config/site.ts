@@ -8,10 +8,9 @@
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://abdevelopment.ai").replace(/\/$/, "");
 
 export const mainNav = [
-  { label: "Home", href: "/" },
+  { label: "Projects", href: "/gallery" },
+  { label: "What We Build", href: "/#services" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "/#services" },
-  { label: "Gallery", href: "/gallery" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ];

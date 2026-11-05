@@ -10,6 +10,7 @@ export function SectionHeading({
   align = "left",
   as: Tag = "h2",
   id,
+  className = "",
 }: {
   eyebrow?: string;
   title: ReactNode;
@@ -18,20 +19,24 @@ export function SectionHeading({
   align?: "left" | "center";
   as?: "h1" | "h2";
   id?: string;
+  className?: string;
 }) {
   const center = align === "center";
   return (
-    <Reveal className={`max-w-3xl ${center ? "mx-auto text-center" : ""}`}>
-      {eyebrow && (
-        <Eyebrow tone={light ? "gold-deep" : "gold"} className={center ? "justify-center" : ""}>
-          {eyebrow}
-        </Eyebrow>
-      )}
-      <Tag id={id} className={`mt-6 text-4xl sm:text-5xl lg:text-6xl ${light ? "text-black" : "text-ivory"}`}>
+    <Reveal className={`max-w-3xl ${center ? "mx-auto text-center" : ""} ${className}`}>
+      {eyebrow && <Eyebrow tone={light ? "taupe" : "stone"}>{eyebrow}</Eyebrow>}
+      <Tag
+        id={id}
+        className={`${eyebrow ? "mt-5" : ""} text-[clamp(2.5rem,5.5vw,4.75rem)] ${light ? "text-black" : "text-ivory"}`}
+      >
         {title}
       </Tag>
       {intro && (
-        <p className={`mt-6 text-base leading-relaxed sm:text-lg ${light ? "text-taupe" : "text-stone"}`}>{intro}</p>
+        <p
+          className={`mt-6 max-w-2xl text-lg leading-relaxed ${center ? "mx-auto" : ""} ${light ? "text-taupe" : "text-stone"}`}
+        >
+          {intro}
+        </p>
       )}
     </Reveal>
   );

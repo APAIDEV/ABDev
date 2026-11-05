@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Montserrat } from "next/font/google";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import { business } from "@/config/business";
 import { siteUrl } from "@/config/site";
 import { BrandBar } from "@/components/layout/BrandBar";
@@ -10,15 +10,15 @@ import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
 });
 
-const montserrat = Montserrat({
+const jost = Jost({
   subsets: ["latin"],
-  variable: "--font-montserrat",
+  variable: "--font-jost",
   display: "swap",
 });
 
@@ -47,7 +47,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${montserrat.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${jost.variable}`}>
       <body className="min-h-dvh bg-black text-ivory">
         <a
           href="#main"

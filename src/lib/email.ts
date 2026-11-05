@@ -51,17 +51,18 @@ ${row("Marketing texts", input.marketingSms ? "Opted in" : "No")}${row("Message"
   });
 
   const firstName = input.name.split(" ")[0];
+  const { owner } = business;
   const autoReply = resend.emails.send({
     from: serverEnv.emailFrom,
     to: input.email,
     replyTo: business.email,
-    subject: `Thank you for contacting ${business.name}`,
+    subject: `Thank you, ${firstName}. Your note reached ${business.name}`,
     html: layout(
       `Thank you, ${firstName}.`,
-      `<p>We have received your inquiry about <strong>${escape(input.projectType.toLowerCase())}</strong> and will be in touch shortly to talk through your vision.</p>
-<p>If your project is time-sensitive, call us any time at <a href="tel:${business.phone.tel}" style="color:#7a5f33">${escape(business.phone.display)}</a>. We are available 24/7.</p>
-<p style="margin-top:28px;font-family:Georgia,serif;font-size:18px">${escape(business.tagline)}</p>
-<p style="font-size:12px;color:#5e5a54;margin-top:28px">You are receiving this one-time confirmation because this address was entered on our contact form. This is not a marketing email. Submitting the form does not create a contract or client relationship.</p>`,
+      `<p>I got your note about <strong>${escape(input.projectType.toLowerCase())}</strong>, and I'm looking forward to hearing more about what you have in mind. I'll be in touch personally soon.</p>
+<p>If anything is time-sensitive, call me any time at <a href="tel:${business.phone.tel}" style="color:#7a5f33">${escape(business.phone.display)}</a>.</p>
+<p style="margin-top:28px">Warmly,<br><span style="font-family:Georgia,serif;font-size:20px">${escape(owner.name)}</span><br><span style="color:#5e5a54;font-size:13px">${escape(owner.title)}, ${escape(business.name)}</span></p>
+<p style="font-size:12px;color:#5e5a54;margin-top:28px">You're receiving this one-time confirmation because this address was entered on our contact form. This is not a marketing email. Submitting the form does not create a contract or client relationship.</p>`,
     ),
   });
 
