@@ -12,8 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // Separate app with its own config: the Steps4Stackzz Foundation site.
-    "steps4stackzz/**",
+    // Separate app with its own config: the Stackzz Foundation site.
+    "stackzz-foundation/**",
   ]),
 ]);
 
